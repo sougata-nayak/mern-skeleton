@@ -13,16 +13,16 @@ app.use((req, res, next) => {
     next();
 });
 
-function logger(req) {
+// Logger middleware
+app.use((req, res, next) => {
     console.log(`${req.method} request received for ${req.url} at ${new Date().toLocaleString()}`)
     fs.appendFile('log.txt', `${req.method} request received for ${req.url} at ${new Date().toLocaleString()}\n`, (err) => {
         if (err) console.log('Error logging request => ', err);
     });
-}
+    next()
+});
 
 app.get('/', (req, res) => {
-    logger(req);
-
     return res.send(`
         <h1>Hello User</h1>
         <p>Welcome to Home page</p>
@@ -30,7 +30,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/users', (req, res) => {
-    logger(req);
     return res.send(`
         <h1>Users Page</h1>
         <ul>
@@ -40,18 +39,15 @@ app.get('/users', (req, res) => {
 
 
 app.get('/api/users/:id', (req, res) => {
-    logger(req);
     const user = users.find(user => user.id === parseInt(req.params.id));
     if (user) return res.json(user);
     return res.status(404).json({ 'User not found': parseInt(req.params.id) });
 });
 
 app.get('/api/users', (req, res) => {
-    logger(req);
     return res.json(users);
 })
     .post('/api/users', (req, res) => {
-        logger(req);
         if (!req.body.name) {
             return res.status(400).send("Please send name to add user");
         }
@@ -71,7 +67,6 @@ app.get('/api/users', (req, res) => {
 
     })
     .patch('/api/users', (req, res) => {
-        logger(req);
         const user = users.find(user => user.id === parseInt(req.body.id));
         // Update values in user
         if (req.body.name) user.name = req.body.name;
@@ -84,7 +79,6 @@ app.get('/api/users', (req, res) => {
         });
     })
     .delete('/api/users', (req, res) => {
-        logger(req);
         const length = users.length;
         users = users.filter(user => user.id !== Number(req.query.id));
         if (length === users.length) return res.send("User not found")

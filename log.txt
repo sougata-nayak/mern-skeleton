@@ -16,3 +16,5 @@ POST request received for /api/users at 12/21/2025, 7:39:26 PM
 POST request received for /api/users at 12/21/2025, 7:39:33 PM
 GET request received for /api/users/1 at 12/21/2025, 7:41:21 PM
 GET request received for /api/users/67 at 12/21/2025, 7:41:30 PM
+GET request received for /api/users/67 at 12/21/2025, 8:36:45 PM
+GET request received for /api/users at 12/21/2025, 8:37:07 PM
