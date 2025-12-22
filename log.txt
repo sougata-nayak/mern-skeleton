@@ -12,3 +12,7 @@ GET request received for /api/users/8 at 12/21/2025, 7:04:18 PM
 GET request received for /api/users/1 at 12/21/2025, 7:04:24 PM
 GET request received for /api/users at 12/21/2025, 7:17:58 PM
 GET request received for / at 12/21/2025, 7:18:15 PM
+POST request received for /api/users at 12/21/2025, 7:39:26 PM
+POST request received for /api/users at 12/21/2025, 7:39:33 PM
+GET request received for /api/users/1 at 12/21/2025, 7:41:21 PM
+GET request received for /api/users/67 at 12/21/2025, 7:41:30 PM

@@ -8,7 +8,8 @@ const PORT = 8000;
 app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
-    res.setHeader('dev-name', 'sougata');
+    // Good Practice: Always use X- to start of a custom header
+    res.setHeader('X-dev-name', 'sougata');
     next();
 });
 
@@ -42,7 +43,7 @@ app.get('/api/users/:id', (req, res) => {
     logger(req);
     const user = users.find(user => user.id === parseInt(req.params.id));
     if (user) return res.json(user);
-    return res.json({ 'User not found': parseInt(req.params.id) });
+    return res.status(404).json({ 'User not found': parseInt(req.params.id) });
 });
 
 app.get('/api/users', (req, res) => {
@@ -51,6 +52,9 @@ app.get('/api/users', (req, res) => {
 })
     .post('/api/users', (req, res) => {
         logger(req);
+        if (!req.body.name) {
+            return res.status(400).send("Please send name to add user");
+        }
         const newUser = {
             "id": users[users.length - 1].id + 1,
             "name": req.body.name,
