@@ -10,3 +10,5 @@ PATCH request received for /api/users at 12/21/2025, 7:03:18 PM
 DELETE request received for /api/users?id=3 at 12/21/2025, 7:03:44 PM
 GET request received for /api/users/8 at 12/21/2025, 7:04:18 PM
 GET request received for /api/users/1 at 12/21/2025, 7:04:24 PM
+GET request received for /api/users at 12/21/2025, 7:17:58 PM
+GET request received for / at 12/21/2025, 7:18:15 PM

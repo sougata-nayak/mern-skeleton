@@ -5,7 +5,12 @@ const app = express();
 const PORT = 8000;
 
 // Middleware
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+    res.setHeader('dev-name', 'sougata');
+    next();
+});
 
 function logger(req) {
     console.log(`${req.method} request received for ${req.url} at ${new Date().toLocaleString()}`)
